@@ -2,6 +2,7 @@ package DataVisualization.service.ArcDiagram
 
 import DataVisualization.domain.ArcDiagram.DEFAULT_VALUE_NUMBER_FOR_ARC_DIAGRAM
 import DataVisualization.domain.ArcDiagram.Link
+import DataVisualization.service.sizeShouldBe
 
 class LinkFactory {
     fun createLinkFrom(content: List<String>): List<Link> {

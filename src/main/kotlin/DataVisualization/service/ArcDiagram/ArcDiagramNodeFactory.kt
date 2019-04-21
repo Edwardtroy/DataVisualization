@@ -1,8 +1,9 @@
 package DataVisualization.service.ArcDiagram
 
 import DataVisualization.domain.ArcDiagram.ArcDiagramNode
+import DataVisualization.service.sizeShouldBe
 
-class NodeFactory {
+class ArcDiagramNodeFactory {
     fun createNodesFrom(content: List<String>): List<ArcDiagramNode> {
         val nodeList = ArrayList<ArcDiagramNode>()
 
