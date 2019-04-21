@@ -1,16 +1,16 @@
 package DataVisualization.service.ArcDiagram
 
-import DataVisualization.domain.ArcDiagram.Node
+import DataVisualization.domain.ArcDiagram.ArcDiagramNode
 
 class NodeFactory {
-    fun createNodesFrom(content: List<String>): List<Node> {
-        val nodeList = ArrayList<Node>()
+    fun createNodesFrom(content: List<String>): List<ArcDiagramNode> {
+        val nodeList = ArrayList<ArcDiagramNode>()
 
         content.map {
             it.split(",").sizeShouldBe(8)
         }.forEach {
-            nodeList.add(Node(id = "${it[1]}, ${it[2]}", group = it[0]))
-            nodeList.add(Node(id = "${it[4]}, ${it[5]}", group = it[3]))
+            nodeList.add(ArcDiagramNode(id = "${it[1]}, ${it[2]}", group = it[0]))
+            nodeList.add(ArcDiagramNode(id = "${it[4]}, ${it[5]}", group = it[3]))
         }
 
         return nodeList.distinctBy { it.id + it.group }

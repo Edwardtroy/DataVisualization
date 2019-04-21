@@ -1,10 +1,10 @@
 package DataVisualization.service.ArcDiagram
 
-import DataVisualization.domain.ArcDiagram.Node
+import DataVisualization.domain.ArcDiagram.ArcDiagramNode
 import org.junit.jupiter.api.Test
 import org.assertj.core.api.Assertions.*
 
-class NodeFactoryTest {
+class ArcDiagramNodeFactoryTest {
     @Test
     fun `should create two node when given content`() {
         val content = listOf(
@@ -15,7 +15,7 @@ class NodeFactoryTest {
         val nodes = NodeFactory().createNodesFrom(content)
 
         assertThat(nodes.size).isEqualTo(2)
-        assertThat(nodes.first()).isEqualTo(Node("1, node", "owner"))
-        assertThat(nodes.last()).isEqualTo(Node("2, node", "owner"))
+        assertThat(nodes.first()).isEqualTo(ArcDiagramNode("1, node", "owner"))
+        assertThat(nodes.last()).isEqualTo(ArcDiagramNode("2, node", "owner"))
     }
 }
