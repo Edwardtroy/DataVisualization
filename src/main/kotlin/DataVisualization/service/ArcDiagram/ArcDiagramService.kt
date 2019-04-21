@@ -8,8 +8,7 @@ import kotlinx.serialization.json.Json
 
 class ArcDiagramService: DiagramService {
     override fun transferToString(diagram: Diagram): String {
-        val stringify = Json.stringify(ArcDiagram.serializer(), diagram as ArcDiagram)
-        return stringify
+        return Json.stringify(ArcDiagram.serializer(), diagram as ArcDiagram)
     }
 
     fun toArcDiagram(content: List<String>): ArcDiagram {
