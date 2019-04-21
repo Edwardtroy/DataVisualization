@@ -1,6 +1,5 @@
 package DataVisualization.domain.ArcDiagram
 
-import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
