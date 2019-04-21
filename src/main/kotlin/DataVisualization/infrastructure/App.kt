@@ -1,14 +1,21 @@
 package DataVisualization.infrastructure
 
 import DataVisualization.service.ArcDiagram.ArcDiagramService
+import DataVisualization.service.HivePlot.HivePlotService
 
 fun main() {
     val content = CSVFileReader()
             .load("dependencies.csv")
 
-    val diagram = ArcDiagramService()
+    val arcDiagram = ArcDiagramService()
             .toArcDiagram(content)
 
     FileRepository(ArcDiagramService())
-            .store(diagram, "output/ArcDiagram.json")
+            .store(arcDiagram, "output/ArcDiagram.json")
+
+    val hivePlot = HivePlotService()
+            .toHivePlot(content)
+
+    FileRepository(HivePlotService())
+            .store(hivePlot, "output/HivePlot.json")
 }
