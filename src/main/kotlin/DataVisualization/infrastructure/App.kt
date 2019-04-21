@@ -2,6 +2,7 @@ package DataVisualization.infrastructure
 
 import DataVisualization.service.ArcDiagram.ArcDiagramService
 import DataVisualization.service.HivePlot.HivePlotService
+import DataVisualization.service.SankeyDiagram.SankeyDiagramService
 
 fun main() {
     val content = CSVFileReader()
@@ -18,4 +19,10 @@ fun main() {
 
     FileRepository(HivePlotService())
             .store(hivePlot, "output/HivePlot.json")
+
+    val sankeyDiagram = SankeyDiagramService()
+            .toSankeyDiagram(content)
+
+    FileRepository(SankeyDiagramService())
+            .store(sankeyDiagram, "output/SankeyDiagram.json")
 }
