@@ -4,7 +4,7 @@ import DataVisualization.domain.ArcDiagram.Link
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class LinkFactoryTest {
+class ArcLinkFactoryTest {
     @Test
     fun `should create two links when input is just contain one connection`() {
         val content = listOf(
@@ -12,7 +12,7 @@ class LinkFactoryTest {
                 "owner,2,node,owner,1,node,,HARD"
         )
 
-        val links = LinkFactory().createLinkFrom(content)
+        val links = ArcLinkFactory().createLinkFrom(content)
 
         assertThat(links.size).isEqualTo(2)
         assertThat(links.first()).isEqualTo(Link("1, node", "2, node", 1))

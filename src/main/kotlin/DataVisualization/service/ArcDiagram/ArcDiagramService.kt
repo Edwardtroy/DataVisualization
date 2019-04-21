@@ -12,7 +12,7 @@ class ArcDiagramService: DiagramService {
 
     fun toArcDiagram(content: List<String>): ArcDiagram {
         val nodes = ArcDiagramNodeFactory().createNodesFrom(content)
-        val links = LinkFactory().createLinkFrom(content)
+        val links = ArcLinkFactory().createLinkFrom(content)
 
         return ArcDiagram(nodes, links)
     }
