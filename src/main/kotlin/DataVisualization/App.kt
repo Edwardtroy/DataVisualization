@@ -1,4 +1,0 @@
-package DataVisualization
-
-fun main() {
-}
