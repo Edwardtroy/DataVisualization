@@ -12,4 +12,4 @@ data class ArcDiagram(val nodes: List<ArcDiagramNode>, val links: List<ArcLink>)
 data class ArcDiagramNode(val id: String, val group: String)
 
 @Serializable
-data class ArcLink(val source: String, val target: String, val value: Int)
+data class ArcLink(val source: String, val target: String, val value: Int = DEFAULT_VALUE_NUMBER_FOR_ARC_DIAGRAM)
