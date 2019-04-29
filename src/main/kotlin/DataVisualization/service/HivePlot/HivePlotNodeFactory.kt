@@ -4,17 +4,21 @@ import DataVisualization.domain.HivePlot.HivePlotNode
 import DataVisualization.service.sizeShouldBe
 
 class HivePlotNodeFactory {
-    fun createNodesFrom(content: List<String>): List<HivePlotNode> {
-        val nodeNameList = getNodeNameList(content)
+    private lateinit var nodeNameList: List<String>
+    private lateinit var content: List<String>
 
-        val importsMap = getImportsMap(content, nodeNameList)
+    fun createNodesFrom(content: List<String>): List<HivePlotNode> {
+        this.content = content
+        this.nodeNameList = getNodeNameList()
+
+        val importsMap = getImportsMap()
 
         return nodeNameList.map {
             HivePlotNode(name = it, size = 1, imports = importsMap[it]!!)
         }
     }
 
-    private fun getNodeNameList(content: List<String>): List<String> {
+    private fun getNodeNameList(): List<String> {
         val nodeNameList = ArrayList<String>()
 
         content.map {
@@ -27,7 +31,7 @@ class HivePlotNodeFactory {
         return nodeNameList.distinct()
     }
 
-    private fun getImportsMap(content: List<String>, nodeNameList: List<String>): HashMap<String, ArrayList<String>> {
+    private fun getImportsMap(): HashMap<String, ArrayList<String>> {
         val importsMap = HashMap<String, ArrayList<String>>()
 
         val input = content.map {
