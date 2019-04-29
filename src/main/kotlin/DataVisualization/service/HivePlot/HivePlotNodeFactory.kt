@@ -3,12 +3,14 @@ package DataVisualization.service.HivePlot
 import DataVisualization.domain.HivePlot.HivePlotNode
 import DataVisualization.service.sizeShouldBe
 
-class HivePlotNodeFactory {
+class HivePlotNodeFactory(content: List<String>) {
+    private var inputs: List<List<String>> = content.map {
+        it.split(",").sizeShouldBe(8)
+    }
     private lateinit var nodeNameList: List<String>
-    private lateinit var content: List<String>
+    private var relationMap = HashMap<String, String>()
 
-    fun createNodesFrom(content: List<String>): List<HivePlotNode> {
-        this.content = content
+    fun createNodesFrom(): List<HivePlotNode> {
         this.nodeNameList = getNodeNameList()
 
         val importsMap = getImportsMap()
@@ -21,9 +23,7 @@ class HivePlotNodeFactory {
     private fun getNodeNameList(): List<String> {
         val nodeNameList = ArrayList<String>()
 
-        content.map {
-            it.split(",").sizeShouldBe(8)
-        }.forEach {
+        inputs.forEach {
             nodeNameList.add("${it[0]}.${it[1]}.${it[2]}")
             nodeNameList.add("${it[3]}.${it[4]}.${it[5]}")
         }
@@ -34,14 +34,10 @@ class HivePlotNodeFactory {
     private fun getImportsMap(): HashMap<String, ArrayList<String>> {
         val importsMap = HashMap<String, ArrayList<String>>()
 
-        val input = content.map {
-            it.split(",").sizeShouldBe(8)
-        }
-
         nodeNameList.forEach {
             val nodeName = it
             val importsList = ArrayList<String>()
-            input.filter { "${it[3]}.${it[4]}.${it[5]}" == nodeName }
+            inputs.filter { "${it[3]}.${it[4]}.${it[5]}" == nodeName }
                     .forEach {
                         importsList.add("${it[0]}.${it[1]}.${it[2]}")
                     }
@@ -49,5 +45,22 @@ class HivePlotNodeFactory {
         }
 
         return importsMap
+    }
+
+    fun getRootNode(): List<String> {
+        val from = ArrayList<String>()
+        val to = ArrayList<String>()
+
+        inputs.forEach {
+            val fromElement = "${it[0]}.${it[1]}.${it[2]}"
+            val toElement = "${it[3]}.${it[4]}.${it[5]}"
+            from.add(fromElement)
+            to.add(toElement)
+            relationMap[fromElement] = toElement
+        }
+
+        return from.distinct().filterNot {
+            to.contains(it)
+        }.distinct()
     }
 }

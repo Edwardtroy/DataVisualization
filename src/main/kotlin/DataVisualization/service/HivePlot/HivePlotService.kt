@@ -11,7 +11,7 @@ class HivePlotService: DiagramService{
     }
 
     fun toHivePlot(content: List<String>): HivePlot {
-        val nodes = HivePlotNodeFactory().createNodesFrom(content)
+        val nodes = HivePlotNodeFactory(content).createNodesFrom()
 
         return HivePlot(nodes)
     }
