@@ -10,7 +10,7 @@ class HivePlotNodeFactory {
         val importsMap = getImportsMap(content, nodeNameList)
 
         return nodeNameList.map {
-            HivePlotNode(name = it, size = 1, imports = importsMap.get(it)!!)
+            HivePlotNode(name = it, size = 1, imports = importsMap[it]!!)
         }
     }
 
@@ -41,7 +41,7 @@ class HivePlotNodeFactory {
                     .forEach {
                         importsList.add("${it[0]}.${it[1]}.${it[2]}")
                     }
-            importsMap.put(nodeName, importsList)
+            importsMap[nodeName] = importsList
         }
 
         return importsMap
